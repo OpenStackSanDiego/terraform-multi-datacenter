@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "aws_www_count" {
   description = "Number of AWS web servers to startup"
-#  default = "0"
+  default = "3"
 }
 
 variable "aws_amis" {
@@ -58,7 +58,7 @@ resource "aws_elb" "www" {
   name = "www"
 
   instances       = ["${aws_instance.www.*.id}"]
-  availability_zones = ["us-east-1a","us-east-1b"]
+#  availability_zones = ["us-east-1a","us-east-1b","us-east-1d","us-east-1e"]
 
   listener {
     instance_port     = 80

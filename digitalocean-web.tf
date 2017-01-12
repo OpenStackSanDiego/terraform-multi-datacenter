@@ -10,7 +10,7 @@ resource "digitalocean_ssh_key" "www" {
 # curl -X GET --silent "https://api.digitalocean.com/v2/images?per_page=999" -H "Authorization: Bearer $DIGITALOCEAN_TOKEN"
 
 resource "digitalocean_droplet" "web" {
-  count = 0
+  count = 1
   image = "centos-7-x64"
   name = "web-1"
   region = "nyc1"

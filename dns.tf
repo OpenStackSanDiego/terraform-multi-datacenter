@@ -7,7 +7,7 @@ data "aws_route53_zone" "selected" {
 resource "aws_route53_record" "www" {
   zone_id = "${data.aws_route53_zone.selected.zone_id}"
   name = "www.${data.aws_route53_zone.selected.name}"
-  type = "A"
+  type = "CNAME"
   ttl = "300"
-  records = ["10.0.0.1"]
+  records = ["${aws_elb.www.dns_name}"]
 }
