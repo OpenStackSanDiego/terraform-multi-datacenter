@@ -9,10 +9,12 @@ resource "digitalocean_ssh_key" "www" {
 # For a list of images:
 # curl -X GET --silent "https://api.digitalocean.com/v2/images?per_page=999" -H "Authorization: Bearer $DIGITALOCEAN_TOKEN"
 
-resource "digitalocean_droplet" "web" {
-  count = 1
+resource "digitalocean_droplet" "www" {
+  count = "${var.digitalocean_www_count}"
+
   image = "centos-7-x64"
-  name = "web-1"
+  name = "${format("www-%03d", count.index + 1)}"
+
   region = "nyc1"
   size = "512mb"
   ssh_keys = ["${digitalocean_ssh_key.www.id}"]
